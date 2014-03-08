@@ -4,6 +4,6 @@
 	<h2>There are no names</h2>
 } else {
 	@for(contact <- contacts) {
-		<li>@contact.getName() ( <small>@contact.getEmailAddress() )</small></li>
+		<li>@contact.getName() ( <small>@contact.getEmailAddress() )</small><a href='@routes.Contacts.edit(contact.getId())'>Edit</a></li>
 	}
 }

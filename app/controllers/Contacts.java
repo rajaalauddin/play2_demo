@@ -35,11 +35,29 @@ public class Contacts extends Controller {
 	}
 
 	public static Result edit(Long id) {
-		return TODO;
+
+		Contact contact = Contact.find.byId(id);
+
+		if(contact == null) {
+			return redirect(routes.Contacts.index());
+		} else {
+			Form<Contact> form = contactForm.fill(contact);
+			return ok(edit.render(id, form));
+		}
+
 	}
 
 	public static Result update(Long id) {
-		return TODO;
+
+		Form<Contact> form = contactForm.bindFromRequest(request());
+
+		if(!form.hasErrors()) {
+			form.get().update(id);
+			return redirect(routes.Contacts.index());
+		} else {
+			return badRequest(edit.render(id, form));
+		}
+		
 	}
 
 	public static Result delete(Long id) {
