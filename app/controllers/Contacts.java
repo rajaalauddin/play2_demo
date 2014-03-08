@@ -61,7 +61,14 @@ public class Contacts extends Controller {
 	}
 
 	public static Result delete(Long id) {
-		return TODO;
+
+		Contact contact = Contact.find.byId(id);
+
+		if(contact != null) {
+			contact.delete();
+		}
+		
+		return redirect(routes.Contacts.index());
 	}
 
 }
