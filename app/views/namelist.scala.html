@@ -1,0 +1,9 @@
+@(contacts: List[models.Contact])
+
+@if(contacts.isEmpty()) {
+	<h2>There are no names</h2>
+} else {
+	@for(contact <- contacts) {
+		<li>@contact.getName() ( <small>@contact.getEmailAddress() )</small></li>
+	}
+}
