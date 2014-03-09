@@ -1,6 +1,14 @@
-import play.GlobalSettings;
-import play.Application;
 import models.Contact;
+import play.Application;
+import play.GlobalSettings;
+
+import play.*;
+import play.mvc.*;
+import play.mvc.Http.*;
+import play.libs.F.*;
+
+import static play.mvc.Results.*;
+import views.html.*;
 
 public class Global extends GlobalSettings {
 	
@@ -30,4 +38,16 @@ public class Global extends GlobalSettings {
 		steven.setEmailAddress("steven@wisc.edu");
 		steven.save();
 	}
+
+	@Override
+	public Promise<SimpleResult> onHandlerNotFound(RequestHeader request) {
+        return Promise.<SimpleResult>pure(notFound(
+            notfoundpage.render()
+        ));
+    }
+//	
+//	@Override
+//	public Result onHandlerNotFound(Http.RequestHeader requestHeader) {
+//		return Results.notFound(views.html.notFound.render());
+//	}
 }
